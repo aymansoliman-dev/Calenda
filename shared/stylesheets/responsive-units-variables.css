@@ -1,0 +1,193 @@
+/* ==========================
+   Responsive Units Variables
+========================== */
+:root {
+    --font-xs: clamp(0.625rem, 1vw, 0.75rem);
+    --font-sm: clamp(0.75rem, 1vw, 0.875rem);
+    --font-md: clamp(0.875rem, 1vw, 1rem);
+    --font-lg: clamp(1rem, 1.2vw, 1.25rem);
+    --font-xl: clamp(1.25rem, 1.5vw, 1.5rem);
+    --font-xxl: clamp(1.5rem, 2vw, 2rem);
+
+    --pad-xs: clamp(0.25rem, 0.5vw, 0.5rem);
+    --pad-sm: clamp(0.5rem, 1vw, 0.75rem);
+    --pad-md: clamp(0.75rem, 1vw, 1rem);
+    --pad-lg: clamp(1rem, 1.2vw, 1.5rem);
+    --pad-xl: clamp(1.5rem, 2vw, 2rem);
+    --pad-xxl: clamp(2rem, 3vw, 4rem);
+
+    --gap-sm: clamp(0.25rem, 0.6vw, 0.5rem);
+    --gap-md: clamp(0.5rem, 1vw, 1rem);
+    --gap-lg: clamp(1rem, 2vw, 2rem);
+    --gap-xl: clamp(1.5rem, 3vw, 3rem);
+
+    --radius-sm: clamp(0.25rem, 0.4vw, 0.5rem);
+    --radius-md: clamp(0.5rem, 0.75vw, 1rem);
+    --radius-lg: clamp(1rem, 1vw, 2rem);
+    --radius-xl: clamp(1.5rem, 1.5vw, 2rem);
+
+    --sidebar-width: clamp(5rem, 10vw, 7rem);
+    --logo-size: clamp(2rem, 6vw, 3rem);
+    --button-height: clamp(2rem, 2.5vw, 3rem);
+    --task-width: clamp(15.625rem, 30vw, 21.875rem);
+
+    --max-column-height: 33rem;
+}
+
+/* Replace static units */
+#panel {
+    margin: var(--pad-xl) !important;
+    border-radius: var(--radius-lg) !important;
+}
+
+aside {
+    padding: var(--pad-md) !important;
+    border-radius: var(--radius-lg) !important;
+}
+
+aside #tabs ul li .tab {
+    padding: var(--pad-md) !important;
+    gap: var(--gap-md) !important;
+    border-radius: var(--radius-md) !important;
+}
+
+#user {
+    padding: var(--pad-sm) var(--pad-md) !important;
+    border-radius: var(--radius-md) !important;
+    gap: var(--gap-md) !important;
+}
+
+#user img {
+    width: var(--logo-size) !important;
+    border-radius: var(--radius-md) !important;
+}
+
+#user h4 {
+    font-size: var(--font-md) !important;
+}
+
+#board {
+    padding: var(--pad-lg) !important;
+    margin-left: var(--sidebar-width) !important;
+    gap: var(--gap-lg) !important;
+    border-radius: var(--radius-lg) !important;
+}
+
+#board header {
+    gap: var(--gap-lg) !important;
+}
+
+label[for="search-bar"] {
+    margin-left: var(--pad-xxl) !important;
+    border-radius: var(--radius-sm) !important;
+}
+
+label[for="search-bar"] input {
+    padding: var(--pad-md) !important;
+}
+
+label[for="dark-theme-toggle"] #border {
+    width: var(--button-height) !important;
+    height: clamp(1rem, 1.2vw, 1.25rem) !important;
+    border-radius: var(--radius-md) !important;
+}
+
+label[for="dark-theme-toggle"] #pointer {
+    width: clamp(1rem, 1.2vw, 1.25rem) !important;
+    height: clamp(1rem, 1.2vw, 1.25rem) !important;
+}
+
+#new-task-btn {
+    border-radius: var(--radius-md) !important;
+    padding: var(--pad-md) var(--pad-lg) !important;
+    gap: var(--gap-md) !important;
+}
+
+#tasks {
+    gap: var(--gap-md) !important;
+}
+
+.tasks-column {
+    padding: var(--pad-sm) !important;
+    border-radius: var(--radius-md) !important;
+}
+
+.tasks-column .label {
+    gap: var(--gap-lg) !important;
+    padding: var(--pad-sm) !important;
+}
+
+.cards-column ul {
+    gap: var(--gap-sm) !important;
+}
+
+.cards-column button {
+    border-radius: var(--radius-sm) !important;
+    padding: var(--pad-md) !important;
+}
+
+.card {
+    border-radius: var(--radius-md) !important;
+    padding: var(--pad-lg) !important;
+}
+
+.card__title {
+    gap: var(--gap-md) !important;
+}
+
+.card__title .task-name {
+    font-size: var(--font-sm) !important;
+}
+
+.card__title .prioritization {
+    font-size: var(--font-xs) !important;
+}
+
+.card__description {
+    font-size: var(--font-xs) !important;
+}
+
+#task-tabs button {
+    padding: var(--pad-sm) !important;
+    border-radius: var(--radius-sm) !important;
+    margin: var(--pad-sm) !important;
+}
+
+#add-task-popup {
+    border-radius: var(--radius-xl) !important;
+    padding: var(--pad-xxl) !important;
+    gap: var(--gap-md) !important;
+}
+
+@media (max-width: 992px) {
+    #add-task-popup {
+        padding: var(--pad-xl) !important;
+    }
+}
+
+#add-task-popup form {
+    gap: var(--gap-xl) !important;
+}
+
+@media (max-width: 992px) {
+    #add-task-popup form {
+        gap: var(--gap-md) !important;
+    }
+}
+
+#add-task-popup form #left-column,
+#add-task-popup form #right-column {
+    gap: var(--gap-md) !important;
+}
+
+#add-task-popup form input,
+#add-task-popup form select,
+#add-task-popup form textarea {
+    padding: var(--pad-md) !important;
+    border-radius: var(--radius-sm) !important;
+}
+
+#add-task-popup form button {
+    padding: var(--pad-md) var(--pad-xxl) !important;
+    border-radius: var(--radius-md) !important;
+}

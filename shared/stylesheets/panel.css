@@ -1,0 +1,567 @@
+/* ==========================
+   Imports
+========================== */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Comfortaa:wght@300..700&family=Manrope:wght@200..800&family=Noto+Naskh+Arabic:wght@400..700&family=Outfit:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import './colors-palette.css';
+@import './responsive-units-variables.css';
+
+/* ==========================
+   Base Reset
+========================== */
+* {
+  box-sizing: border-box;
+  font-family: 'Comfortaa', 'Outfit', 'Cairo', 'Noto Naskh Arabic', 'Plus Jakarta Sans', sans-serif;
+}
+
+html {
+  scrollbar-width: none;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--board-background-color);
+  margin: 0;
+}
+
+html,
+body,
+#panel,
+.card,
+aside,
+main,
+header {
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6, .material-icons {
+  margin: 0;
+  color: var(--primary-text-color);
+}
+
+p, span, .date, button {
+  color: var(--secondary-text-color);
+}
+
+/* ==========================
+   Layout: Panel
+========================== */
+#panel {
+  width: 95vw;
+  height: 90vh;
+  overflow: hidden;
+  margin: 2rem;
+  border-radius: 2rem;
+  border: 1px solid var(--border-color);
+  box-shadow:
+          20px 20px 60px var(--shadow-dark),
+          -20px -20px 60px var(--shadow-light);
+  display: flex;
+  background-color: var(--board-background-color);
+  position: relative;
+}
+
+/* ==========================
+   Sidebar
+========================== */
+aside {
+  height: 100%;
+  width: clamp(7rem, 8vw, 10rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 2rem 1.5rem 1.5rem;
+  border-radius: 2rem;
+  position: absolute;
+  background-color: var(--sidebar-background-color);
+  z-index: 1;
+}
+
+aside:hover {
+  width: min(14rem, 80vw);
+  align-items: flex-start;
+
+  & #tabs {
+    margin-left: 0.75rem;
+  }
+}
+
+aside:hover h2,
+aside:hover h3,
+aside:hover h4 {
+  display: block;
+}
+
+aside #user {
+  justify-content: center;
+}
+
+aside #logo {
+  justify-content: center;
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  @media (max-width: 640px) {
+    padding: 0 !important;
+
+    & h2 {
+      font-size: 1rem !important;
+    }
+  }
+}
+
+aside #logo img {
+  max-width: var(--logo-size);
+}
+
+aside:hover #logo {
+  justify-content: flex-start;
+}
+
+aside h2, aside h3, aside h4 {
+  display: none;
+}
+
+aside h2 {
+  font-size: var(--font-xl);
+}
+
+aside ul {
+  padding: 0;
+}
+
+aside #tabs {
+  background-color: inherit;
+}
+
+aside .material-icons.menu {
+  display: none;
+}
+
+aside #tabs ul li {
+  list-style: none;
+}
+
+aside #tabs ul li .tab {
+  padding: 1rem;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+aside #tabs ul li .tab:hover,
+aside #tabs ul li .active.tab {
+  background-color: var(--tab-hover-color);
+}
+
+#user {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.75rem;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#user:hover {
+  background-color: var(--tab-hover-color);
+}
+
+#user img {
+  width: 48px;
+  border-radius: 0.75rem;
+}
+
+#user h4 {
+  font-size: 1rem;
+  text-wrap: nowrap;
+}
+
+/* ==========================
+   Board Area
+========================== */
+#board {
+  padding: 1.5rem;
+  margin-left: clamp(7rem, 8vw, 10rem) !important;
+  flex-grow: 1;
+  flex-shrink: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border-radius: 2rem;
+}
+
+#board header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2rem;
+}
+
+#board header h1 {
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#board main {
+  flex-grow: 1;
+}
+
+/* ==========================
+   Search & Theme Toggle
+========================== */
+label[for="search-bar"] {
+  flex-grow: 1;
+  flex-shrink: 1;
+  margin-left: 4rem;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--separator-color);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  color: var(--secondary-text-color) !important;
+}
+
+label[for="search-bar"]:has(input:focus-visible) {
+  border-color: var(--border-color);
+}
+
+label[for="search-bar"] input {
+  background-color: transparent;
+  padding: 0.75rem;
+  border: none;
+  outline: none;
+  flex-grow: 1;
+}
+
+label[for="dark-theme-toggle"] {
+  cursor: pointer;
+}
+
+label[for="dark-theme-toggle"] input {
+  display: none;
+}
+
+label[for="dark-theme-toggle"] #border {
+  display: block;
+  width: 3rem;
+  height: 1.25rem;
+  outline: 1px solid;
+  border-radius: 1rem;
+  position: relative;
+  background-color: black;
+}
+
+label[for="dark-theme-toggle"] #pointer {
+  display: block;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: white;
+}
+
+label[for="dark-theme-toggle"]:has(input:checked) #border {
+  background-color: white;
+  outline-color: black;
+}
+
+label[for="dark-theme-toggle"]:has(input:checked) #pointer {
+  left: 0;
+  background-color: black;
+}
+
+/* ==========================
+   Buttons
+========================== */
+#new-task-btn {
+  background-color: var(--button-color);
+  color: var(--inverse-text-color);
+  border: none;
+  border-radius: 1rem;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+
+  @media (max-width: 1024px) {
+    transform-origin: bottom right;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: scale(1.25);
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  #new-task-btn {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    aspect-ratio: 1 / 1;
+    border-radius: 50% !important;
+  }
+
+  #new-task-btn span:last-child {
+    display: none;
+  }
+}
+
+/* ==========================
+   Tasks
+========================== */
+#tasks-tabs {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+#tasks-tabs .label {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--column-background-color);
+  border-radius: 1rem;
+
+  @media (max-width: 640px) {
+    padding: 0 0.25rem !important;
+
+    & h5 {
+      font-size: 0.5rem !important;
+    }
+  }
+
+}
+
+@media (max-width: 1024px) {
+  #tasks-tabs .label {
+    cursor: pointer;
+  }
+
+  #tasks-tabs .label.active {
+    border: 2px solid var(--primary-text-color);
+  }
+}
+
+#tasks {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  height: 100%;
+  overflow: hidden;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tasks-column {
+  max-height: 69vh;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--column-background-color);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+  .tasks-column {
+    display: none;
+  }
+
+  .tasks-column.active {
+    display: block;
+  }
+}
+
+.cards-column {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  padding-right: 0.25rem;
+}
+
+.cards-column::-webkit-scrollbar {
+  color: transparent;
+  width: 0.5rem;
+}
+
+.cards-column::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-color);
+  border-radius: 0.5rem;
+}
+
+.cards-column ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-lg);
+}
+
+.cards-column button {
+  border: 1px dashed var(--border-color);
+  border-radius: 0.5rem;
+  background-color: transparent;
+  padding: 0.75rem;
+  cursor: pointer;
+  width: 90%;
+  align-self: center;
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
+}
+
+/* ==========================
+   Task Cards
+========================== */
+.card {
+  background-color: var(--card-background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+.card__title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.card__title .task-name {
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.card__title .priority {
+  font-size: 0.5rem;
+}
+
+.card__attributes .date {
+  font-size: 0.75rem;
+}
+
+.task__options {
+  margin-left: auto;
+}
+
+.task__options .edit {
+  opacity: 0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover .task__options .edit {
+  opacity: 1;
+}
+
+.card__description {
+  font-size: 0.75rem;
+  color: var(--secondary-text-color);
+  overflow: clip;
+}
+
+.card__attributes {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: auto;
+}
+
+.card .tag {
+  font-size: 0.65rem;
+  background-color: #9b82f6b3;
+  color: var(--primary-text-color);
+  border: 1px solid rgba(155, 130, 246, 1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  margin-right: auto;
+}
+
+
+/* ==========================
+   Responsiveness
+=========================== */
+
+@media (max-width: 786px) {
+  label[for="search-bar"] {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  #panel {
+    flex-direction: column;
+    margin: 0 !important;
+    width: 100%;
+    height: 100dvh;
+    border-radius: 0 !important;
+  }
+
+  #board {
+    margin-left: 0 !important;
+  }
+
+  aside {
+    position: initial !important;
+    flex-direction: row;
+    width: 100% !important;
+    height: fit-content;
+    border-radius: 0 !important;
+    border-bottom: 1px solid var(--border-color);
+    justify-content: space-between;
+    padding: 0.5rem 1rem !important;
+
+    & h2, & h4 {
+      display: block;
+    }
+
+    &:hover {
+      align-items: center;
+    }
+  }
+
+  aside #tabs {
+    display: none;
+  }
+
+  aside #user {
+    flex-direction: row-reverse;
+    padding: 0 !important;
+  }
+}
+
+/* ==========================
+   Utility
+========================== */
+.counter {
+  display: none !important;
+}

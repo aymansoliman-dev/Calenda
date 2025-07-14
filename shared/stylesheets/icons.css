@@ -1,0 +1,50 @@
+@import './colors-palette.css';
+
+.material-icons {
+    &.circle {
+        color: #e5e540;
+    }
+    &.donut {
+        color: #1c7dec;
+    }
+    &.check {
+        color: #30cb61;
+    }
+    &.bell {
+        font-size: 1.75rem;
+    }
+    &.calendar_day {
+        color: var(--secondary-text-color);
+        font-size: 0.75rem;
+    }
+    &.search {
+        background-color: transparent;
+        color: gray;
+        padding: 0.7rem;
+    }
+    &.delete {
+        color: var(--secondary-text-color);
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: #ff3957;
+        }
+    }
+    &.menu {
+        font-size: 2.5rem;
+    }
+    &.add {
+        color: var(--inverse-text-color);
+    }
+    &.close {
+        color: white;
+    }
+    &.edit {
+        font-size: 1.2rem;
+        color: var(--secondary-text-color);
+
+        &:hover {
+            color: #3988ff;
+        }
+    }
+}

@@ -1,0 +1,37 @@
+:root {
+   --sidebar-background-color: #f4f4f4;
+   --board-background-color: #ffffff;
+   --tab-hover-color: #efefef;
+   --column-background-color: #f4f4f4;
+   --primary-text-color: #0d0d0d;
+   --inverse-text-color: #ffffff;
+   --secondary-text-color: #8f8f8f;
+   --border-color: rgba(164, 164, 164, 0.45);
+   --button-color: #000000;
+   --card-background-color: #ffffff;
+   --separator-color: #efefef;
+   --shadow-dark: rgba(0, 0, 0, 0.3);
+   --shadow-light: rgba(0, 0, 0, 0.05);
+   --body-bg-gradient: linear-gradient(145deg, #d4d4d4, #ffffff);
+   --popup-field-background-color: #f1f2f4;
+   --scrollbar-color: #c4c4c4;
+}
+
+:root[data-theme="dark"] {
+   --sidebar-background-color: #181818;
+   --board-background-color: #212121;
+   --tab-hover-color: #303030;
+   --column-background-color: #303030;
+   --primary-text-color: #ffffff;
+   --inverse-text-color: #000000;
+   --secondary-text-color: #afafaf;
+   --border-color: #1a1a1a;
+   --button-color: #ffffff;
+   --card-background-color: #212121;
+   --separator-color: #2c2c2c;
+   --shadow-dark: rgba(0, 0, 0, 0.5);
+   --shadow-light: rgba(255, 255, 255, 0.05);
+   --body-bg-gradient: linear-gradient(145deg, #1c1c1c, #2a2a2a);
+   --popup-field-background-color: #2c3135;
+   --scrollbar-color: #404040;
+}
