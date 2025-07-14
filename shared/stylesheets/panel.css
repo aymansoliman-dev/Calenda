@@ -168,7 +168,6 @@ aside #tabs ul li .active.tab {
   display: flex;
   align-items: center;
   gap: 1rem;
-  border: 1px solid var(--border-color);
   cursor: pointer;
   transition: all 0.3s ease;
 }
