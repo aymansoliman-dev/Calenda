@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Ayman Soliman">
+
+    <link rel="icon" href="../assets/icon.svg" type="image/svg+xml" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../shared/stylesheets/panel.css">
+    <link rel="stylesheet" href="../shared/stylesheets/colors-palette.css">
+    <link rel="stylesheet" href="../shared/stylesheets/icons.css">
+    <link rel="stylesheet" href="../shared/stylesheets/task-popup.css">
+
+    <title>Calenda</title>
+</head>
+
+<body>
+
+<!-- Panel Layout -->
+<section id="panel">
+
+    <!-- Sidebar -->
+    <aside>
+        <div id="logo">
+            <img src="../assets/icon.svg" alt="App Logo">
+            <h2>Calenda</h2>
+            <span class="material-icons menu">menu</span>
+        </div>
+
+        <section id="tabs">
+            <ul>
+                <li><div class="tab active"><span class="material-icons">auto_awesome_mosaic</span><h3>Board</h3></div></li>
+                <li><div class="tab"><span class="material-icons">calendar_month</span><h3>Calendar</h3></div></li>
+                <li><div class="tab"><span class="material-icons">analytics</span><h3>Analytics</h3></div></li>
+                <li><div class="tab"><span class="material-icons">settings</span><h3>Settings</h3></div></li>
+            </ul>
+        </section>
+
+        <section id="user">
+            <div id="avatar"><img src="../assets/avatar.jpg" alt="User Avatar"></div>
+            <h4>Ayman</h4>
+        </section>
+    </aside>
+
+    <!-- Board Content -->
+
+    <section id="board">
+        <header>
+            <h1>Beta <span class="material-icons-outlined">science</span></h1>
+
+            <label for="search-bar">
+                <span class="material-icons search">search</span>
+                <input type="search" name="search" id="search-bar" disabled>
+            </label>
+
+            <span class="material-icons bell">notifications</span>
+
+            <label for="dark-theme-toggle">
+                <span id="border"><span id="pointer"></span></span>
+                <input type="checkbox" name="dark-theme" id="dark-theme-toggle">
+            </label>
+
+            <button title="New Task" id="new-task-btn">
+                <span class="material-icons add">add</span>
+                <span style="color: var(--inverse-text-color)">New Task</span>
+            </button>
+        </header>
+
+        <main>
+
+            <div id="tasks-tabs">
+
+                <!-- Task Tabs -->
+
+                <div id="tasks--pending__label" class="label active" data-link="pending">
+                    <span class="material-icons circle">radio_button_unchecked</span>
+                    <h5>Pending</h5>
+                    <span class="counter">0</span>
+                </div>
+
+                <div id="tasks--in-progress__label" class="label" data-link="in-progress">
+                    <span class="material-icons donut">donut_large</span>
+                    <h5>In Progress</h5>
+                    <span class="counter">0</span>
+                </div>
+
+                <div id="tasks--completed__label" class="label" data-link="completed">
+                    <span class="material-icons check">check_circle</span>
+                    <h5>Completed</h5>
+                    <span class="counter">0</span>
+                </div>
+
+            </div>
+
+            <section id="tasks">
+
+                <!-- Task Columns -->
+
+                <section id="tasks--pending" class="tasks-column active">
+                    <div class="cards-column" data-state="pending">
+                        <ul></ul>
+                        <button class="add-task-button">Add Task</button>
+                    </div>
+                </section>
+
+                <section id="tasks--in-progress" class="tasks-column">
+                    <div class="cards-column" data-state="in-progress">
+                        <ul></ul>
+                        <button class="add-task-button">Add Task</button>
+                    </div>
+                </section>
+
+                <section id="tasks--completed" class="tasks-column">
+                    <div class="cards-column" data-state="completed">
+                        <ul></ul>
+                        <button class="add-task-button">Add Task</button>
+                    </div>
+                </section>
+
+            </section>
+        </main>
+    </section>
+</section>
+<!------------------------------------------>
+<script type="module" src="beta.js"></script>
+</body>
+</html>
