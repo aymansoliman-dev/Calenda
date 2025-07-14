@@ -1,15 +1,15 @@
 class BetaTaskColumnAddButtonListener {
-    constructor(taskCreatorInstance) {
-        this.taskCreator = taskCreatorInstance;
-        this.addButtons = document.querySelectorAll('.add-task-button');
+    constructor(taskCreator) {
+        this.taskCreator = taskCreator;
     }
 
     attach() {
-        this.addButtons.forEach(button => {
+        const buttons = document.querySelectorAll('.add-task-button');
+        console.log('[AddButton] Found:', buttons.length);
+        buttons.forEach(button => {
             button.addEventListener('click', () => {
-                const ul = button.parentElement.querySelector('.cards-column')?.querySelector('ul');
-                if (!ul) return;
-                this.taskCreator.popup("Add task", null, true, ul);
+                const targetUl = button.closest('.tasks-column')?.querySelector('ul');
+                this.taskCreator.popup("Add task", null, true, targetUl);
             });
         });
     }

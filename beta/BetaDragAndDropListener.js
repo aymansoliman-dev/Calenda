@@ -1,15 +1,13 @@
 class BetaDragAndDropListener {
-    constructor() {
+    constructor(taskCreator) {
+        this.taskCreator = taskCreator;
         this.draggedElement = null;
         this.columns = document.querySelectorAll('.tasks-column');
     }
 
     initiate() {
-        // Make all existing task cards draggable
-        document.querySelectorAll('.task.card').forEach(card => {
-            card.addEventListener('dragstart', (e) => this.handleDragStart(e));
-            card.addEventListener('dragend', (e) => this.handleDragEnd(e));
-        });
+        // Initialize all cards
+        document.querySelectorAll('.task.card').forEach(card => this.makeDraggable(card));
 
         this.columns.forEach(column => {
             column.addEventListener('dragover', (e) => this.handleDragOver(e));
@@ -19,16 +17,17 @@ class BetaDragAndDropListener {
         });
     }
 
-    handleDragStart(e) {
-        this.draggedElement = e.target;
-        e.dataTransfer.effectAllowed = 'move';
-        e.dataTransfer.setData('text/html', e.target.outerHTML);
-        e.target.classList.add('dragging');
-    }
+    makeDraggable(card) {
+        card.addEventListener('dragstart', (e) => {
+            this.draggedElement = card;
+            card.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+        });
 
-    handleDragEnd(e) {
-        e.target.classList.remove('dragging');
-        this.draggedElement = null;
+        card.addEventListener('dragend', () => {
+            this.draggedElement.classList.remove('dragging');
+            this.draggedElement = null;
+        });
     }
 
     handleDragOver(e) {
@@ -42,8 +41,17 @@ class BetaDragAndDropListener {
         const column = e.currentTarget;
         const dropTargetUl = column.querySelector('ul');
 
-        if (this.draggedElement && dropTargetUl && dropTargetUl !== this.draggedElement.parentNode) {
+        if (this.draggedElement && dropTargetUl) {
             dropTargetUl.appendChild(this.draggedElement);
+
+            const id = this.draggedElement.getAttribute('data-id');
+            const columnId = column.id.replace('tasks--', '');
+            const tasks = this.taskCreator.getStoredTasks();
+            const updatedTasks = tasks.map(t => {
+                if (t.id === id) t.column = columnId;
+                return t;
+            });
+            this.taskCreator.saveTasks(updatedTasks);
         }
 
         column.classList.remove('drop-hover');

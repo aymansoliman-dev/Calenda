@@ -359,7 +359,7 @@ label[for="dark-theme-toggle"]:has(input:checked) #pointer {
   }
 
   #tasks-tabs .label.active {
-    border: 2px solid var(--primary-text-color);
+    outline: 2px solid var(--primary-text-color);
   }
 }
 

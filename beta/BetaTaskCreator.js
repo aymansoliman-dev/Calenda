@@ -5,9 +5,8 @@ import { BetaDragAndDropListener } from "./BetaDragAndDropListener.js";
 class BetaTaskCreator {
     constructor() {
         this.generalNewTaskBtn = document.querySelector('#new-task-btn');
-        this.mobileTabs = document.querySelectorAll('.tasks-column');
         this.tabLabels = document.querySelectorAll('#tasks-tabs .label');
-        this.columnAddButtons = document.querySelectorAll('.add-task-button');
+        this.dragHandler = new BetaDragAndDropListener(this);
     }
 
     getStoredTasks() {
@@ -81,7 +80,6 @@ class BetaTaskCreator {
             form.querySelector('[name="priority"]').value = taskObj.priority;
             form.querySelector('[name="description"]').value = taskObj.description;
             form.querySelector('[name="date"]').value = taskObj.date;
-
             if (focusInput) taskInput.focus();
         }
 
@@ -156,6 +154,8 @@ class BetaTaskCreator {
         const columnSelector = `#tasks--${column} ul`;
         document.querySelector(columnSelector)?.appendChild(newTaskCard);
         this.attachCardListeners(newTaskCard);
+
+        this.dragHandler.makeDraggable(newTaskCard);
     }
 
     updateTaskCard(card, task) {
@@ -237,8 +237,7 @@ class BetaTaskCreator {
         new BetaTaskColumnAddButtonListener(this).attach();
         this.generalNewTaskBtn.addEventListener('click', () => this.popup());
 
-        // Attach drag and drop listeners to columns
-        new BetaDragAndDropListener().initiate();
+        this.dragHandler.initiate();
     }
 }
 
