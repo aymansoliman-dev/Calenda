@@ -1,0 +1,18 @@
+# IDE and Editor directories (can also be handled via global gitignore)
+.idea/
+.vscode/
+
+# Environment variables
+.env
+.env.local
+
+# Dependencies (if applicable)
+node_modules/
+
+# Build output
+build/
+dist/
+out/
+
+# Logs
+*.log
